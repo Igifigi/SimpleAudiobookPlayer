@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleAudiobookPlayer.Model
 {
@@ -24,13 +20,23 @@ namespace SimpleAudiobookPlayer.Model
         {
             get; set;
         }
+        public int LastReadChapter
+        {
+            get; set;
+        }
+        public TimeSpan EndTime
+        {
+            get; set;
+        }
 
-        public Book(string title, string author, int chapters, string path)
+        public Book(string title, string author, int chapters, string path, int lastReadChapter, TimeSpan endTime)
         {
             this.Title = title;
             this.Author = author;
             this.Chapters = chapters;
             this.Path = path;
+            this.LastReadChapter = lastReadChapter;
+            this.EndTime = endTime;
         }
     }
 }

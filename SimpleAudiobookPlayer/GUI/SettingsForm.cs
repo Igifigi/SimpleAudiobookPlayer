@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using System.IO;
 using SimpleAudiobookPlayer.Model;
 
+/*
+ * Pełna funkcjonalność osiągnięta!
+ * **/
+
 namespace SimpleAudiobookPlayer.GUI
 {
     public partial class SettingsForm : Form
@@ -28,7 +32,17 @@ namespace SimpleAudiobookPlayer.GUI
         private void InitializeElements()
         {
             readBooks = mm.ReadBooksFromCache();
+            clearFields();
             readBooks.ForEach(book => selectBookComboBox.Items.Add(book.Author + " \"" + book.Title + "\""));
+        }
+
+        private void clearFields()
+        {
+            selectBookComboBox.Items.Clear();
+            selectBookComboBox.Text = string.Empty;
+            titleTextBox.Text = string.Empty;
+            authorTextBox.Text = string.Empty;
+            pathLabel.Text = string.Empty;
         }
 
         private void deleteBookButton_Click(object sender, EventArgs e)
@@ -39,6 +53,8 @@ namespace SimpleAudiobookPlayer.GUI
                 try
                 {
                     readBooks.Remove(toRemove);
+                    mm.WriteBooksToCache(readBooks);
+                    InitializeElements();
                     uc.ShowInfoBox("Książka usunięta poprawnie!");
                 }
                 catch(Exception ex)
@@ -96,7 +112,16 @@ namespace SimpleAudiobookPlayer.GUI
             {
                 if (!areBookComponentsValid())
                     return;
-                mm.ExpandBooksCache(new Book(titleTextBox.Text, authorTextBox.Text, Directory.GetFiles(selectedPath, ".mp3", SearchOption.TopDirectoryOnly).Length, selectedPath));
+                mm.ExpandBooksCache(new Book(
+                    titleTextBox.Text, 
+                    authorTextBox.Text, 
+                    Directory.GetFiles(selectedPath, 
+                    ".mp3", 
+                    SearchOption.TopDirectoryOnly).Length, 
+                    selectedPath,
+                    1,
+                    TimeSpan.Zero));
+                InitializeElements();
                 uc.ShowInfoBox("Książka została dodana poprawnie!");
             }
             catch(Exception ex)
@@ -106,5 +131,9 @@ namespace SimpleAudiobookPlayer.GUI
 
         }
 
+        private void selectBookComboBox_Click(object sender, EventArgs e)
+        {
+            InitializeElements();
+        }
     }
 }

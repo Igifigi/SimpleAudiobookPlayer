@@ -48,6 +48,7 @@ namespace SimpleAudiobookPlayer
             // 
             // coverPictureBox
             // 
+            this.coverPictureBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("coverPictureBox.BackgroundImage")));
             this.coverPictureBox.Location = new System.Drawing.Point(13, 56);
             this.coverPictureBox.Name = "coverPictureBox";
             this.coverPictureBox.Size = new System.Drawing.Size(512, 512);
@@ -120,10 +121,10 @@ namespace SimpleAudiobookPlayer
             // audioPlayer
             // 
             this.audioPlayer.Enabled = true;
-            this.audioPlayer.Location = new System.Drawing.Point(1170, 312);
+            this.audioPlayer.Location = new System.Drawing.Point(1156, 310);
             this.audioPlayer.Name = "audioPlayer";
             this.audioPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("audioPlayer.OcxState")));
-            this.audioPlayer.Size = new System.Drawing.Size(87, 124);
+            this.audioPlayer.Size = new System.Drawing.Size(170, 157);
             this.audioPlayer.TabIndex = 7;
             this.audioPlayer.Visible = false;
             // 

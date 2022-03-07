@@ -128,6 +128,7 @@ namespace SimpleAudiobookPlayer.GUI
             this.selectBookComboBox.Name = "selectBookComboBox";
             this.selectBookComboBox.Size = new System.Drawing.Size(377, 28);
             this.selectBookComboBox.TabIndex = 9;
+            this.selectBookComboBox.Click += new System.EventHandler(this.selectBookComboBox_Click);
             // 
             // deleteBookButton
             // 
