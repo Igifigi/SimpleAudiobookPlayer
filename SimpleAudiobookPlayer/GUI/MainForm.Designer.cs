@@ -141,7 +141,7 @@ namespace SimpleAudiobookPlayer
             // testplayer
             // 
             this.testplayer.Enabled = true;
-            this.testplayer.Location = new System.Drawing.Point(725, 634);
+            this.testplayer.Location = new System.Drawing.Point(934, 655);
             this.testplayer.Name = "testplayer";
             this.testplayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("testplayer.OcxState")));
             this.testplayer.Size = new System.Drawing.Size(307, 85);

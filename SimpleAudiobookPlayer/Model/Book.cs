@@ -1,4 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
 
 namespace SimpleAudiobookPlayer.Model
 {
@@ -28,8 +37,12 @@ namespace SimpleAudiobookPlayer.Model
         {
             get; set;
         }
+        public List<string> ChaptersPaths
+        {
+            get; set;
+        }
 
-        public Book(string title, string author, int chapters, string path, int lastReadChapter, TimeSpan endTime)
+        public Book(string title, string author, int chapters, string path, int lastReadChapter, TimeSpan endTime, List<string> chaptersPaths)
         {
             this.Title = title;
             this.Author = author;
@@ -37,6 +50,7 @@ namespace SimpleAudiobookPlayer.Model
             this.Path = path;
             this.LastReadChapter = lastReadChapter;
             this.EndTime = endTime;
+            this.ChaptersPaths = chaptersPaths;
         }
     }
 }

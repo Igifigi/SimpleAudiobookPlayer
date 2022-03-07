@@ -27,7 +27,7 @@ namespace SimpleAudiobookPlayer
             
             //memoryManager.ReadBooksFromCache();
             //memoryManager.testBooks();
-            //test();
+            test();
         }
 
         private void InitializeElements()
@@ -36,12 +36,17 @@ namespace SimpleAudiobookPlayer
             readBooks.ForEach(book => selectBookComboBox.Items.Add(book.Author + " \"" + book.Title + "\""));
         }
 
+        private void InitializeBooks()
+        {
+
+        }
 
         private void test()
         {
             //Console.WriteLine("The path for the executable file that started the application is: " + Application.StartupPath);
             //CoreAudioDevice coreAudioDevice = new CoreAudioController().DefaultPlaybackDevice;
             //Console.WriteLine(coreAudioDevice.Volume);
+            mm.testBooks();
         }
 
         private void settingsButton_Click(object sender, EventArgs e)

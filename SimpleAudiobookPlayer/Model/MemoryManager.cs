@@ -43,7 +43,7 @@ namespace SimpleAudiobookPlayer.Model
                 {
                     return JsonConvert.DeserializeObject<List<Book>>(File.ReadAllText(books_cache_path)).ToList<Book>();
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     uc.ShowErrorBox("Nie udało się odczytyać zawartości pamięci cache!");
                     return new List<Book>();
@@ -100,11 +100,27 @@ namespace SimpleAudiobookPlayer.Model
 
         #endregion
 
+        public List<string> GetChaptersPathsByBookPath(string bookPath)
+        {
+            return null;
+        }
 
+        public string GetCoverPathByBookPath(string bookPath)
+        {
+            return null;
+        }
 
 
         public void testBooks()
         {
+            //Book book = new Book("Księgi Jakubowe", "Ogla Tokarczuk",1, @"R:\POBRANE\Olga Tokarczuk - Księgi Jakubowe (audiobook)",1, TimeSpan.Zero);
+            //////var inp = Directory.GetFiles(book.Path, "*.mp3", SearchOption.TopDirectoryOnly);
+            //////foreach(var x in inp)
+            //////{
+            //////    Console.WriteLine(x);
+            //////}
+
+
             //Book book = new Book("Księgi Jakubowe", "Ogla Tokarczuk", TimeSpan.Zero, 2137);
             //Book book4 = new Book("KsięgiIIIIIIIIIIIII Jakubowe", "Ogla Tokarczuk", TimeSpan.Zero, 2137);
             //List<Book> books = new List<Book>() { book, book4 };

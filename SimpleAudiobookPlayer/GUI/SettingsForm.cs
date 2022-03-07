@@ -115,12 +115,11 @@ namespace SimpleAudiobookPlayer.GUI
                 mm.ExpandBooksCache(new Book(
                     titleTextBox.Text, 
                     authorTextBox.Text, 
-                    Directory.GetFiles(selectedPath, 
-                    ".mp3", 
-                    SearchOption.TopDirectoryOnly).Length, 
+                    Directory.GetFiles(selectedPath, "*.mp3", SearchOption.TopDirectoryOnly).Length, 
                     selectedPath,
                     1,
-                    TimeSpan.Zero));
+                    TimeSpan.Zero,
+                    Directory.GetFiles(selectedPath, "*.mp3", SearchOption.TopDirectoryOnly).ToList()));
                 InitializeElements();
                 uc.ShowInfoBox("Książka została dodana poprawnie!");
             }
