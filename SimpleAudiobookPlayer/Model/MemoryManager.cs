@@ -9,16 +9,24 @@ using SimpleAudiobookPlayer.GUI;
 using SimpleAudiobookPlayer.Model;
 using SimpleAudiobookPlayer;
 using Newtonsoft.Json;
+using Id3;
 
 namespace SimpleAudiobookPlayer.Model
 {
     class MemoryManager
     {
-        readonly string books_cache_path = Application.StartupPath.ToString() + @"\books.json";
-        readonly string last_read_book_path = Application.StartupPath.ToString() + @"\last_read_book.json";
+        static readonly string cache_directory = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).ToString() + @"\SimpleAudioBookPlayer";
+        readonly string books_cache_path = cache_directory + @"\books.json";
+        readonly string last_read_book_path = cache_directory + @"\last_read_book.json";
         UserCommunication uc = new UserCommunication();
 
         #region Technical functions
+
+        private void GenerateEmptyDirectory()
+        {
+            if(!Directory.Exists(cache_directory))
+                Directory.CreateDirectory(cache_directory);
+        }
 
         private void GenerateEmptyBooksCacheFile()
         {
@@ -37,6 +45,7 @@ namespace SimpleAudiobookPlayer.Model
 
         public List<Book> ReadBooksFromCache()
         {
+            GenerateEmptyDirectory();
             if (File.Exists(books_cache_path))
             {
                 try
@@ -74,8 +83,12 @@ namespace SimpleAudiobookPlayer.Model
 
         public Book ReadLastReadBookFromCache()
         {
+            GenerateEmptyDirectory();
+            
             if (File.Exists(last_read_book_path))
             {
+                if (File.ReadAllText(last_read_book_path).ToString() == string.Empty)
+                    return new Book("", "", 0, "", 0, TimeSpan.Zero, new List<string>());
                 try
                 {
                     return JsonConvert.DeserializeObject<Book>(File.ReadAllText(last_read_book_path));
@@ -102,12 +115,19 @@ namespace SimpleAudiobookPlayer.Model
 
         public List<string> GetChaptersPathsByBookPath(string bookPath)
         {
-            return null;
+            return Directory.GetFiles(bookPath, "*.mp3", SearchOption.TopDirectoryOnly).ToList();
         }
 
         public string GetCoverPathByBookPath(string bookPath)
         {
             return null;
+        }
+
+        public string GetChapterTitleByPath(string chpaterPath)
+        {
+            var chapter = new Mp3(chpaterPath);
+            Id3Tag tag = chapter.GetTag(Id3TagFamily.Version2X);
+            return tag.Title.ToString();
         }
 
 

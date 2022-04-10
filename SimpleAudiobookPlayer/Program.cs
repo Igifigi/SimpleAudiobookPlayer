@@ -17,9 +17,11 @@ namespace SimpleAudiobookPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
-            //TODO                                                                                \/ - tutaj dajesz ostatnio odtwarzaną książkę
-            //AppDomain.CurrentDomain.ProcessExit += new EventHandler(new MemoryManager().WriteLastReadBookToCache());
+            MainForm mainForm = new MainForm();
+            Application.Run(mainForm);
+            MemoryManager mm = new MemoryManager();
+            
+            
         }
 
 

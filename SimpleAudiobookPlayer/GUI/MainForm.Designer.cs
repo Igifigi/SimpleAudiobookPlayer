@@ -102,10 +102,11 @@ namespace SimpleAudiobookPlayer
             // 
             this.chaptersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chaptersListBox.FormattingEnabled = true;
+            this.chaptersListBox.HorizontalScrollbar = true;
             this.chaptersListBox.ItemHeight = 24;
             this.chaptersListBox.Location = new System.Drawing.Point(531, 56);
             this.chaptersListBox.Name = "chaptersListBox";
-            this.chaptersListBox.Size = new System.Drawing.Size(512, 508);
+            this.chaptersListBox.Size = new System.Drawing.Size(947, 508);
             this.chaptersListBox.TabIndex = 5;
             // 
             // timeLabel
@@ -121,7 +122,7 @@ namespace SimpleAudiobookPlayer
             // audioPlayer
             // 
             this.audioPlayer.Enabled = true;
-            this.audioPlayer.Location = new System.Drawing.Point(1156, 310);
+            this.audioPlayer.Location = new System.Drawing.Point(917, 598);
             this.audioPlayer.Name = "audioPlayer";
             this.audioPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("audioPlayer.OcxState")));
             this.audioPlayer.Size = new System.Drawing.Size(170, 157);
@@ -134,14 +135,15 @@ namespace SimpleAudiobookPlayer
             this.selectBookComboBox.FormattingEnabled = true;
             this.selectBookComboBox.Location = new System.Drawing.Point(13, 13);
             this.selectBookComboBox.Name = "selectBookComboBox";
-            this.selectBookComboBox.Size = new System.Drawing.Size(1029, 37);
+            this.selectBookComboBox.Size = new System.Drawing.Size(1465, 37);
             this.selectBookComboBox.TabIndex = 8;
             this.selectBookComboBox.Text = "Wybierz książkę";
+            this.selectBookComboBox.SelectedIndexChanged += new System.EventHandler(this.selectBookComboBox_SelectedIndexChanged);
             // 
             // testplayer
             // 
             this.testplayer.Enabled = true;
-            this.testplayer.Location = new System.Drawing.Point(934, 655);
+            this.testplayer.Location = new System.Drawing.Point(543, 656);
             this.testplayer.Name = "testplayer";
             this.testplayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("testplayer.OcxState")));
             this.testplayer.Size = new System.Drawing.Size(307, 85);
