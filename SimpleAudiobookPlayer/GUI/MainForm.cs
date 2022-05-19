@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Media;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows;
+using WMPLib;
 using Id3;
 //using AudioSwitcher.AudioApi.CoreAudio;
 using SimpleAudiobookPlayer.Model;
@@ -23,27 +25,44 @@ namespace SimpleAudiobookPlayer
         List<Book> readBooks;
         Book selectedBook;
         Book lastReadBook;
-        //Book currentlyReadBook = ne
-        //Book lastReadBook = new Book();
+        string actualChapterPath;
+        string nextChapterPath;
 
-        
-        
+        SoundPlayer player = new SoundPlayer();
+
+        #region Media player functions
+
+        private void PlayFile(string path)
+        {
+            player.SoundLocation = path;
+            if (player.IsLoadCompleted)
+            {
+                player.PlaySync();
+                if(selectedBook.ChaptersPaths.FindIndex(x => actualChapterPath))
+                //play next chapter here
+            }
+            player.Play();
+        }
+
+        private void Stop()
+        {
+            player.Stop();
+        }
+
+
+
+
+        #endregion
+
+
         public MainForm()
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             InitializeComponent();
             readBooks = mm.ReadBooksFromCache();
             lastReadBook = mm.ReadLastReadBookFromCache();
-            RefreshChapters(lastReadBook);
-
             InitializeElements();
-            test();
-
-
-            
-            //memoryManager.ReadBooksFromCache();
-            //memoryManager.testBooks();
-            //test();
+            RefreshChapters(lastReadBook);
         }
         private void OnProcessExit(object sender, EventArgs e)
         {
@@ -53,17 +72,14 @@ namespace SimpleAudiobookPlayer
         private void InitializeElements()
         {
             readBooks.ForEach(book => selectBookComboBox.Items.Add(book.Author + " \"" + book.Title + "\""));
-            //chaptersListBox.Items.Add()
+            for (int i = 0; i < readBooks.Count; i++)
+                if (mm.AreEqual(readBooks[i], lastReadBook))
+                    selectBookComboBox.SelectedIndex = i;
         }
 
         private void RefreshChapters(Book book)
         {
             book.ChaptersPaths.ForEach(x => chaptersListBox.Items.Add(mm.GetChapterTitleByPath(x)));
-        }
-
-        private void InitializeBooks()
-        {
-
         }
 
         private void test()
@@ -108,9 +124,21 @@ namespace SimpleAudiobookPlayer
             RefreshChapters(selectedBook);
         }
 
-        Book PassSelectedBook()
+        private void playButton_Click(object sender, EventArgs e)
         {
-            return selectedBook;
+            int chapIndex = chaptersListBox.SelectedIndex;
+            string nextchappath = selectedBook.ChaptersPaths[chaptersListBox.SelectedIndex];
+            //Directory.GetFiles(selectedBook., "*.mp3", SearchOption.TopDirectoryOnly).ToList();
+        }
+
+        private void pauseButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chaptersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            actualChapterPath = selectedBook.ChaptersPaths[chaptersListBox.SelectedIndex];
         }
 
         //private void PrintStartupPath()

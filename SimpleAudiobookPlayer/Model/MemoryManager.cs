@@ -130,6 +130,13 @@ namespace SimpleAudiobookPlayer.Model
             return tag.Title.ToString();
         }
 
+        public bool AreEqual(Book b1, Book b2)
+        {
+            if(b1.Author == b2.Author && b1.Title == b2.Title)
+                return true;
+            return false;
+        }
+
 
         public void testBooks()
         {

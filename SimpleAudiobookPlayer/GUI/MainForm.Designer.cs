@@ -65,6 +65,7 @@ namespace SimpleAudiobookPlayer
             this.pauseButton.Size = new System.Drawing.Size(64, 64);
             this.pauseButton.TabIndex = 1;
             this.pauseButton.UseVisualStyleBackColor = false;
+            this.pauseButton.Click += new System.EventHandler(this.pauseButton_Click);
             // 
             // settingsButton
             // 
@@ -88,6 +89,7 @@ namespace SimpleAudiobookPlayer
             this.playButton.Size = new System.Drawing.Size(64, 64);
             this.playButton.TabIndex = 3;
             this.playButton.UseVisualStyleBackColor = false;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // volumeTrackBar
             // 
@@ -108,6 +110,7 @@ namespace SimpleAudiobookPlayer
             this.chaptersListBox.Name = "chaptersListBox";
             this.chaptersListBox.Size = new System.Drawing.Size(947, 508);
             this.chaptersListBox.TabIndex = 5;
+            this.chaptersListBox.SelectedIndexChanged += new System.EventHandler(this.chaptersListBox_SelectedIndexChanged);
             // 
             // timeLabel
             // 
